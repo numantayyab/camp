@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <link type="text/css" href="/stylesheets/base.css" rel="stylesheet"/>
+  <script type="text/javascript" src=" https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script type="text/javascript" src="/javascripts/picachoose/jquery.jcarousel.min.js"></script>
+  <script type="text/javascript" src="/javascripts/picachoose/jquery.pikachoose.min.js"></script>
+  <script type="text/javascript" src="/javascripts/picachoose/jquery.touchwipe.min.js"></script>
+  <script language="javascript">
+      $(document).ready(
+              function () {
+                  $("#pikame").PikaChoose();
+              });
+  </script>
+
+
+</head>
+<body>
+<!-- not really needed, i'm using it to center the gallery. -->
+<br/>
+<br/>
+
+<div class="pikachoose">
+  <% if @sub_domain == "dps.lvh" %>
+      <%= render :partial => "/user/dps" %>
+  <% elsif @sub_domain == "lgs.lvh" %>
+      <%= render :partial => "/user/lgs" %>
+  <% else %>
+      <ul id="pikame" >
+        <li><a href="javascript:"><img src="/images/camp/camp.jpeg"/></a></li>
+        <li><a href="javascript:"><img src="/images/camp/camp1.jpeg"/></a></li>
+        <li><a href="javascript:"><img src="/images/camp/camp3.jpeg"/></a></li>
+      </ul>
+  <% end %>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+<div id="outer-main-menu">
+      <ul id="main-menu">
+        <li class="a"><%= link_to t('dashboard_text'), :controller => "user", :action => "new_dashboard",:subdomain => @sub_domain %></li>
+        <li class="a"><%= link_to "About", :controller => "user", :action => "about_us" %></li>
+        <li class="a"><%= link_to "Gallery", :controller => "user", :action => "gallery" %></li>
+
+        <li class="a"><%= link_to "Login", :controller => "user", :action => "login" %></li>
+      </ul>
+</div>

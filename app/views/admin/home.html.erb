@@ -1,0 +1,22 @@
+<div id="page-yield">
+
+  <% form_for @school, :url => {:controller => 'admin', :action => 'abc'} do |f| %>
+
+      <% f.object.sub_domain ||= SubDomain.new %>
+      <% f.fields_for :sub_domain do |s| %>
+          <div style="float: left; width: 100%;">
+            <%= s.label 'subdomain_name' %>
+            <%= s.text_field :name %>
+          </div>
+      <% end %>
+      <div style="float: left; width: 100%; margin: 5px 0">
+        <%= f.label 'school_name' %>
+        <%= f.text_field :name %>
+      </div>
+      <div style="float: left; width: 100%;">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </div>
+      <%= f.submit 'abc' %>
+  <% end %>
+</div>
