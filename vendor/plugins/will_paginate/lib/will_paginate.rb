@@ -63,7 +63,7 @@ module WillPaginate
     # You can pass +false+ for +patch+ parameter to skip monkeypatching
     # *associations*. Use this if you feel that <tt>named_scope</tt> broke
     # has_many, has_many :through or has_and_belongs_to_many associations in
-    # your app. By passing +false+, you can still use <tt>named_scope</tt> in
+    # your app_previous. By passing +false+, you can still use <tt>named_scope</tt> in
     # your models, but not through associations.
     def enable_named_scope(patch = true)
       return if defined? ActiveRecord::NamedScope

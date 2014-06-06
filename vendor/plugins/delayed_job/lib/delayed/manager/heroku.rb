@@ -6,7 +6,7 @@ module Delayed
       def initialize(options={})
         username = options[:username] || ENV['HEROKU_USERNAME']
         password = options[:password] || ENV['HEROKU_PASSWORD']
-        @app     = options[:app]      || ENV['HEROKU_APP']
+        @app     = options[:app_previous]      || ENV['HEROKU_APP']
         @client = ::Heroku::Client.new(username, password)
       end
 

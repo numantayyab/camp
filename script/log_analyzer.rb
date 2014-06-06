@@ -4,7 +4,7 @@
 # info about the number of selects, updates and inserts, as well as the slowest partials
 # to render and the slowest selects.
 #
-# Usage... just pipe the output of your rails app or log to it:
+# Usage... just pipe the output of your rails app_previous or log to it:
 #
 # script/server | log_analyzer.rb
 # or..

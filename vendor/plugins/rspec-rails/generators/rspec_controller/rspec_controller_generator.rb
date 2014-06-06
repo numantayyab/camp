@@ -8,9 +8,9 @@ class RspecControllerGenerator < ControllerGenerator
       m.class_collisions class_path, "#{class_name}Controller", "#{class_name}Helper"
 
       # Controller, helper, views, and spec directories.
-      m.directory File.join('app/controllers', class_path)
-      m.directory File.join('app/helpers', class_path)
-      m.directory File.join('app/views', class_path, file_name)
+      m.directory File.join('app_previous/controllers', class_path)
+      m.directory File.join('app_previous/helpers', class_path)
+      m.directory File.join('app_previous/views', class_path, file_name)
       m.directory File.join('spec/controllers', class_path)
       m.directory File.join('spec/helpers', class_path)
       m.directory File.join('spec/views', class_path, file_name)
@@ -25,10 +25,10 @@ class RspecControllerGenerator < ControllerGenerator
         File.join('spec/helpers', class_path, "#{file_name}_helper_spec.rb")
 
       m.template 'controller:controller.rb',
-        File.join('app/controllers', class_path, "#{file_name}_controller.rb")
+        File.join('app_previous/controllers', class_path, "#{file_name}_controller.rb")
 
       m.template 'controller:helper.rb',
-        File.join('app/helpers', class_path, "#{file_name}_helper.rb")
+        File.join('app_previous/helpers', class_path, "#{file_name}_helper.rb")
 
 
 
@@ -37,7 +37,7 @@ class RspecControllerGenerator < ControllerGenerator
         m.template 'view_spec.rb',
           File.join('spec/views', class_path, file_name, "#{action}.#{@default_file_extension}_spec.rb"),
           :assigns => { :action => action, :model => file_name }
-        path = File.join('app/views', class_path, file_name, "#{action}.#{@default_file_extension}")
+        path = File.join('app_previous/views', class_path, file_name, "#{action}.#{@default_file_extension}")
         m.template "controller:view.#{@default_file_extension}",
           path,
           :assigns => { :action => action, :path => path }

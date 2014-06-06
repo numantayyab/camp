@@ -4,7 +4,7 @@ Given "I have a rails application" do
     And this plugin is available
     And I have a "users" resource with "name:string"
     And I turn off class caching
-    Given I save the following as "app/models/user.rb"
+    Given I save the following as "app_previous/models/user.rb"
       """
       class User < ActiveRecord::Base
       end
@@ -15,7 +15,7 @@ Given "I have a rails application" do
       secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
       bucket: paperclip
       """
-    And I save the following as "app/views/users/new.html.erb"
+    And I save the following as "app_previous/views/users/new.html.erb"
       """
       <% form_for @user, :html => { :multipart => true } do |f| %>
         <%= f.text_field :name %>
@@ -23,7 +23,7 @@ Given "I have a rails application" do
         <%= submit_tag "Submit" %>
       <% end %>
       """
-    And I save the following as "app/views/users/show.html.erb"
+    And I save the following as "app_previous/views/users/show.html.erb"
       """
       <p>Name: <%= @user.name %></p>
       <p>Avatar: <%= image_tag @user.avatar.url %></p>

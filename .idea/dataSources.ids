@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails fedena-v2.3-bundle-linux: development" uuid="0c7e90e4-1b26-41b7-b8fa-20e4829b520f">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails fedena-v2.3-bundle-linux: test" uuid="92cc30af-759f-4472-8f03-cbbcd256a3eb">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails fedena-v2.3-bundle-linux: cucumber" uuid="61e378bd-8040-4137-985f-2642e09fe7f7">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails fedena-v2.3-bundle-linux: production" uuid="41439721-ef3e-41aa-b248-25d5acdba29c">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

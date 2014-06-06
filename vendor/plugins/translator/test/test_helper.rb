@@ -1,4 +1,4 @@
-# Load Rails from the app, which allows picking up a frozen rails install 
+# Load Rails from the app_previous, which allows picking up a frozen rails install
 # instead of from the gems
 #
 # Borrowed from setup in classic_pagination plugin

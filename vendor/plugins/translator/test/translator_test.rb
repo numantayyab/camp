@@ -2,7 +2,7 @@ require 'test_helper'
 
 # Include the models/helpers directories on the load path.
 [:models, :helpers, :controllers].each do |path|
-  $:.unshift "#{File.dirname(__FILE__)}/fixtures/app/#{path}"
+  $:.unshift "#{File.dirname(__FILE__)}/fixtures/app_previous/#{path}"
 end
 
 # sample AR model

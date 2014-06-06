@@ -78,7 +78,7 @@ require File.join(File.dirname(__FILE__), "/shared_routing_example_group_example
       get 'action_with_render_update'
     end
     
-    it "should allow a path relative to RAILS_ROOT/app/views/ when specifying a partial" do
+    it "should allow a path relative to RAILS_ROOT/app_previous/views/ when specifying a partial" do
       get 'action_with_partial'
       response.should render_template("controller_spec/_partial")
     end

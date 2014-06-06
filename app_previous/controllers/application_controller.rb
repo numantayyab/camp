@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery # :secret => '434571160a81b5595319c859d32060c1'
   filter_parameter_logging :password
-  #before_filter :check_subdomain
+  before_filter :check_subdomain
   before_filter { |c| Authorization.current_user = c.current_user }
   before_filter :message_user
   before_filter :set_user_language
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :dev_mode, :check_subdomain
   include CustomInPlaceEditing
-
+aaaaaaaaa
 
   def dev_mode
     if Rails.env == "development"
@@ -36,10 +36,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_subdomain
+  def check_subdomains
+    aaaaaaaaa
     return true unless current_subdomain
-    unless SubDomain.find_by_name(current_subdomain).present?
-      redirect_to root_url(:host => request.domain, :port => request.port)
+    aaaaaaaaa
+    @school = SubDomain.find_by_name(current_subdomain)
+    @@school = @school
+    unless @school.present?
+      redirect_to root_path#(:host => request.domain, :port => request.port)
     end
   end
 

@@ -38,20 +38,20 @@ Autotest.add_hook :initialize do |at|
   at.add_mapping(%r%^spec/(models|controllers|routing|views|helpers|lib)/.*rb$%) { |filename, _|
     filename
   }
-  at.add_mapping(%r%^app/models/(.*)\.rb$%) { |_, m|
+  at.add_mapping(%r%^app_previous/models/(.*)\.rb$%) { |_, m|
     ["spec/models/#{m[1]}_spec.rb"]
   }
-  at.add_mapping(%r%^app/views/(.*)$%) { |_, m|
+  at.add_mapping(%r%^app_previous/views/(.*)$%) { |_, m|
     at.files_matching %r%^spec/views/#{m[1]}_spec.rb$%
   }
-  at.add_mapping(%r%^app/controllers/(.*)\.rb$%) { |_, m|
+  at.add_mapping(%r%^app_previous/controllers/(.*)\.rb$%) { |_, m|
     if m[1] == "application"
       at.files_matching %r%^spec/controllers/.*_spec\.rb$%
     else
       ["spec/controllers/#{m[1]}_spec.rb"]
     end
   }
-  at.add_mapping(%r%^app/helpers/(.*)_helper\.rb$%) { |_, m|
+  at.add_mapping(%r%^app_previous/helpers/(.*)_helper\.rb$%) { |_, m|
     if m[1] == "application" then
       at.files_matching(%r%^spec/(views|helpers)/.*_spec\.rb$%)
     else

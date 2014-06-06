@@ -134,7 +134,7 @@ module Translator
   end
   
   # When fallback mode is enabled if a key cannot be found in the set locale,
-  # it uses the default locale. So, for example, if an app is mostly localized
+  # it uses the default locale. So, for example, if an app_previous is mostly localized
   # to Spanish (:es), but a new page is added then Spanish users will continue
   # to see mostly Spanish content but the English version (assuming the <tt>default_locale</tt> is :en)
   # for the new page that has not yet been translated to Spanish.

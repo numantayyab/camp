@@ -3,9 +3,9 @@ module Fckeditor
   PLUGIN_NAME = 'fckeditor'
   PLUGIN_PATH = "#{RAILS_ROOT}/vendor/plugins/#{PLUGIN_NAME}"
   PLUGIN_PUBLIC_PATH = "#{PLUGIN_PATH}/public"
-  PLUGIN_CONTROLLER_PATH = "#{PLUGIN_PATH}/app/controllers"  
-  PLUGIN_VIEWS_PATH = "#{PLUGIN_PATH}/app/views"  
-  PLUGIN_HELPER_PATH = "#{PLUGIN_PATH}/app/helpers"
+  PLUGIN_CONTROLLER_PATH = "#{PLUGIN_PATH}/app_previous/controllers"
+  PLUGIN_VIEWS_PATH = "#{PLUGIN_PATH}/app_previous/views"
+  PLUGIN_HELPER_PATH = "#{PLUGIN_PATH}/app_previous/helpers"
       
   module Helper
     def fckeditor_textarea(object, field, options = {})

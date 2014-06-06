@@ -41,11 +41,11 @@ class RspecScaffoldGenerator < Rails::Generator::NamedBase
       m.class_collisions(class_path, "#{class_name}")
 
       # Controller, helper, views, and spec directories.
-      m.directory(File.join('app/models', class_path))
-      m.directory(File.join('app/controllers', controller_class_path))
-      m.directory(File.join('app/helpers', controller_class_path))
-      m.directory(File.join('app/views', controller_class_path, controller_file_name))
-      m.directory(File.join('app/views/layouts', controller_class_path))
+      m.directory(File.join('app_previous/models', class_path))
+      m.directory(File.join('app_previous/controllers', controller_class_path))
+      m.directory(File.join('app_previous/helpers', controller_class_path))
+      m.directory(File.join('app_previous/views', controller_class_path, controller_file_name))
+      m.directory(File.join('app_previous/views/layouts', controller_class_path))
       m.directory(File.join('public/stylesheets', class_path))
 
       m.directory(File.join('spec/controllers', controller_class_path))
@@ -57,7 +57,7 @@ class RspecScaffoldGenerator < Rails::Generator::NamedBase
       m.directory File.join('spec/integration', class_path)
       
       # Layout and stylesheet.
-      m.template("scaffold:layout.html.erb", File.join('app/views/layouts', controller_class_path, "#{controller_file_name}.html.erb"))
+      m.template("scaffold:layout.html.erb", File.join('app_previous/views/layouts', controller_class_path, "#{controller_file_name}.html.erb"))
       m.template("scaffold:style.css", 'public/stylesheets/scaffold.css')
 
       # Controller spec, class, and helper.
@@ -68,23 +68,23 @@ class RspecScaffoldGenerator < Rails::Generator::NamedBase
         File.join('spec/controllers', controller_class_path, "#{controller_file_name}_controller_spec.rb")
 
       m.template "scaffold:controller.rb",
-        File.join('app/controllers', controller_class_path, "#{controller_file_name}_controller.rb")
+        File.join('app_previous/controllers', controller_class_path, "#{controller_file_name}_controller.rb")
 
       m.template 'rspec_scaffold:helper_spec.rb',
         File.join('spec/helpers', class_path, "#{controller_file_name}_helper_spec.rb")
 
       m.template "scaffold:helper.rb",
-        File.join('app/helpers', controller_class_path, "#{controller_file_name}_helper.rb")
+        File.join('app_previous/helpers', controller_class_path, "#{controller_file_name}_helper.rb")
 
       for action in scaffold_views
         m.template(
           "scaffold:view_#{action}.#{@default_file_extension}",
-          File.join('app/views', controller_class_path, controller_file_name, "#{action}.#{default_file_extension}")
+          File.join('app_previous/views', controller_class_path, controller_file_name, "#{action}.#{default_file_extension}")
         )
       end
       
       # Model class, unit test, and fixtures.
-      m.template 'model:model.rb',            File.join('app/models', class_path, "#{file_name}.rb")
+      m.template 'model:model.rb',            File.join('app_previous/models', class_path, "#{file_name}.rb")
       m.template 'model:fixtures.yml',        File.join('spec/fixtures', class_path, "#{table_name}.yml")
       m.template 'rspec_model:model_spec.rb', File.join('spec/models', class_path, "#{file_name}_spec.rb")
 

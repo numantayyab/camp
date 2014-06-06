@@ -118,7 +118,7 @@ module Paperclip
 
     # Returns the public URL of the attachment, with a given style. Note that
     # this does not necessarily need to point to a file that your web server
-    # can access and can point to an action in your app, if you need fine
+    # can access and can point to an action in your app_previous, if you need fine
     # grained security.  This is not recommended if you don't need the
     # security, however, for performance reasons. Set use_timestamp to false
     # if you want to stop the attachment update time appended to the url

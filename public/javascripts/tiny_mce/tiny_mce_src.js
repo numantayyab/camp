@@ -529,7 +529,7 @@ tinymce.create('tinymce.util.Dispatcher', {
 			// Default settings
 			s = t.settings = s || {};
 
-			// Strange app protocol or local anchor
+			// Strange app_previous protocol or local anchor
 			if (/^(mailto|tel|news|javascript|about|data):/i.test(u) || /^\s*#/.test(u)) {
 				t.source = u;
 				return;
