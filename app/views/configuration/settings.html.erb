@@ -19,6 +19,7 @@
       <div class="label-field-pair">
         <label for="configuration_currency_type"><%= t('school_college_name') %></label>
         <div class="text-input-bg">
+          <%= hidden_field_tag 'configuration[school_id]', :value => $school.id %>
           <%= text_field :configuration, :institution_name, :value => @config[:institution_name] %>
         </div>
       </div>

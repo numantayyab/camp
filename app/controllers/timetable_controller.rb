@@ -27,12 +27,12 @@ class TimetableController < ApplicationController
     if request.post?
       @timetable=Timetable.new(params[:timetable])
       @error=false
-      previous=Timetable.find(:all,:conditions=>["end_date >= ? AND start_date <= ?",@timetable.start_date,@timetable.start_date])
+      previous=Timetable.find(:all,:conditions=>["end_date >= ? AND start_date <= ? AND school_id = ?",@timetable.start_date,@timetable.start_date,$school.id])
       unless previous.empty?
         @error=true
         @timetable.errors.add_to_base('start_date_overlap')
       end
-      conflicts=Timetable.find(:all,:conditions=>["end_date >= ? AND start_date <= ?",@timetable.end_date,@timetable.end_date])
+      conflicts=Timetable.find(:all,:conditions=>["end_date >= ? AND start_date <= ? AND school_id = ?",@timetable.end_date,@timetable.end_date , $school.id])
       unless conflicts.empty?
         @error=true
         @timetable.errors.add_to_base('end_date_overlap')
@@ -105,7 +105,7 @@ class TimetableController < ApplicationController
         @timetable.errors.add_to_base('end_date_is_lower_than_today')
       end
       #      @end_conflicts=Timetable.find(:all,:conditions=>["start_date <= ? AND id != ?",new_end,@tt.id])
-      @end_conflicts=Timetable.find(:all,:conditions=>["start_date <= ? AND end_date >= ? AND id != ?",new_end,new_start,@tt.id])
+      @end_conflicts=Timetable.find(:all,:conditions=>["start_date <= ? AND end_date >= ? AND id != ? AND school_id = ?",new_end,new_start,@tt.id , $school.id])
       unless @end_conflicts.empty?
         @error=true
         @timetable.errors.add_to_base('end_date_overlap')
@@ -124,6 +124,7 @@ class TimetableController < ApplicationController
               @tt2=Timetable.new
               @tt2.start_date=Date.today+1.days
               @tt2.end_date=new_end
+              @tt2.school_id=$school.id
               if @tt2.save
                 entries=@tt.timetable_entries
                 entries.each do |e|
@@ -162,16 +163,16 @@ class TimetableController < ApplicationController
 
   def view
     @courses = Batch.active
-    @timetables=Timetable.all
+    @timetables=Timetable.same_school
   end
 
   def edit_master
     @courses = Batch.active
-    @timetables=Timetable.find(:all,:conditions=>["end_date > ?",@local_tzone_time.to_date])
+    @timetables=Timetable.find(:all,:conditions=>["end_date > ? AND school_id = ?",@local_tzone_time.to_date , $school.id])
   end
 
   def teachers_timetable
-    @timetables=Timetable.all
+    @timetables=Timetable.same_school
     ## Prints out timetable of all teachers
     @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",@local_tzone_time.to_date,@local_tzone_time.to_date])
     if @current

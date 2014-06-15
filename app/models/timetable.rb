@@ -20,6 +20,7 @@ class Timetable < ActiveRecord::Base
   validates_presence_of :start_date
   validates_presence_of :end_date
   default_scope :order=>'start_date ASC'
+  named_scope :same_school, {:conditions=>["school_id = #{$school.id}"]}
 
   def self.tte_for_range(batch,date,subject)
     unless subject.elective_group_id.nil?
