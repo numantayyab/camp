@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  require 'rubygems'
   helper :all
   protect_from_forgery # :secret => '434571160a81b5595319c859d32060c1'
   filter_parameter_logging :password

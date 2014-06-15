@@ -520,6 +520,10 @@ class EmployeeController < ApplicationController
   end
 
   def search
+    require 'models/hr/employee_department'
+    require 'models/hr/employee_category'
+    require 'models/hr/employee_position'
+    require 'models/hr/employee_grade'
     @departments = EmployeeDepartment.all
     @categories  = EmployeeCategory.all
     @positions   = EmployeePosition.all
