@@ -11,7 +11,7 @@ class FinanceController < ApplicationController
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
       @cat_names << "'#{category[:category_name]}'"
     end
-    @triggers = FinanceTransactionTrigger.all
+    @triggers = FinanceTransactionTrigger.find(:all ,:conditions => ["school_id = (#{$school.id})"])
     @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN (#{@cat_names.join(',')}) and is_income=1 and deleted=0 "])
   end
   
@@ -234,7 +234,7 @@ class FinanceController < ApplicationController
     @trigger = FinanceTransactionTrigger.new(params[:transaction_trigger])    
     render :update do |page|
       if @trigger.save
-        @triggers = FinanceTransactionTrigger.all
+        @triggers = FinanceTransactionTrigger.find(:all , :conditions => ["school_id = #{$school.id}"])
         page.replace_html 'transaction-triggers-list', :partial => 'transaction_triggers_list'
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
@@ -783,7 +783,7 @@ class FinanceController < ApplicationController
   end
 
   def fees_particulars_new
-    @fees_categories = FinanceFeeCategory.find(:all ,:conditions=> "is_deleted = 0 and is_master = 1", :order=>"name ASC")
+    @fees_categories = FinanceFeeCategory.find(:all,:joins => [:batch => [:course]] ,:conditions=> "finance_fee_categories.is_deleted = 0 and is_master = 1 and courses.school_id = #{$school.id}", :order=>"name ASC")
     @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
     @student_categories = StudentCategory.active
   end
@@ -1154,13 +1154,13 @@ class FinanceController < ApplicationController
   end
 
   def fee_collection_new
-    @fee_categories = FinanceFeeCategory.common_active
+    @fee_categories = FinanceFeeCategory.common_active.map{|f| f if f.batch.course.school_id == $school.id}.compact
     @finance_fee_collection = FinanceFeeCollection.new
   end
 
   def fee_collection_create
     @user = current_user
-    @fee_categories = FinanceFeeCategory.common_active
+    @fee_categories = FinanceFeeCategory.common_active.map{|f| f if f.batch.course.school_id == $school.id}.compact
     unless params[:finance_fee_collection].nil?
       fee_category_name = params[:finance_fee_collection][:fee_category_id]
       @fee_category = FinanceFeeCategory.find_all_by_name(fee_category_name, :conditions=>['is_deleted is false'])
@@ -1520,6 +1520,7 @@ class FinanceController < ApplicationController
         :conditions => ["admission_no = ? " , query],
         :order => "batch_id asc,first_name asc") unless query == ''
     end
+    @students_result = @students_result.map{|s| s if s.user.school_id == $school.id}.compact unless @students_result.nil?
     render :layout => false
   end
 
@@ -1717,7 +1718,7 @@ class FinanceController < ApplicationController
   #fees defaulters-----------------------
 
   def fees_defaulters
-    @courses = Course.active
+    @courses = Course.active.map{|c| c if c.school_id == $school.id }.compact
     @batchs = []
     @dates = []
   end
@@ -2300,20 +2301,20 @@ class FinanceController < ApplicationController
   end
 
   def fee_discount_new
-    @batches = Batch.active
+    @batches = Batch.active.map{|b| b if b.school_id == $school.id}.compact
   end
 
   def load_discount_create_form
     if params[:type]== "batch_wise"
-      @fee_categories = FinanceFeeCategory.common_active
+      @fee_categories = FinanceFeeCategory.common_active.map{|f| f if f.batch.course.school_id == $school.id}.compact
       @fee_discount = BatchFeeDiscount.new
       render :update do |page|
         page.replace_html "form-box", :partial => "batch_wise_discount_form"
         page.replace_html 'form-errors', :text =>""
       end
     elsif params[:type]== "category_wise"
-      @fee_categories = FinanceFeeCategory.common_active
-      @student_categories = StudentCategory.active
+      @fee_categories = FinanceFeeCategory.common_active.map{|f| f if f.batch.course.school_id == $school.id}.compact
+      @student_categories = StudentCategory.active.map{|sc| sc if sc.school_id == $school.id}.compact
       render :update do |page|
         page.replace_html "form-box", :partial => "category_wise_discount_form"
         page.replace_html 'form-errors', :text =>""

@@ -20,6 +20,7 @@ class StudentCategory < ActiveRecord::Base
 
   has_many :students
   has_many :fee_category ,:class_name =>"FinanceFeeCategory"
+  belongs_to :school
   before_destroy :check_dependence
   validates_presence_of :name
   validates_uniqueness_of :name, :scope=>:is_deleted,:case_sensitive => false, :if=> 'is_deleted == false'

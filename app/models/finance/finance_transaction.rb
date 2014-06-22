@@ -19,6 +19,7 @@
 class FinanceTransaction < ActiveRecord::Base
   belongs_to :category, :class_name => 'FinanceTransactionCategory', :foreign_key => 'category_id'
   belongs_to :student
+  belongs_to :school
   belongs_to :finance, :polymorphic => true
   belongs_to :payee, :polymorphic => true
   cattr_reader :per_page
