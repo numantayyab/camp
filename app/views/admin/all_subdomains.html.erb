@@ -14,7 +14,7 @@
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-1"><%= i+1 %></td>
             <td class="col-4"><%=  link_to student.name, :controller => 'schools', :action => 'edit', :id => student.id%></td>
-            <td class="col-4"><%= student.sub_domain.name %></td>
+            <td class="col-4"><%= student.sub_domain.name if student.sub_domain %></td>
             <td class="col-7"><%= student.description %></td>
           </tr>
       <% end %>
