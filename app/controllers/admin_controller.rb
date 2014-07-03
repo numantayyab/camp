@@ -10,6 +10,10 @@ class AdminController < ApplicationController
     #login
   end
 
+  def all_subdomains
+    @schools = School.all
+  end
+
   def about_us
     @sub_domain = current_subdomain
     #login

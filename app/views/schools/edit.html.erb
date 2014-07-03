@@ -1,0 +1,7 @@
+<div id="page-yield">
+  <div id="search_box_bg">
+    <% form_for @school, :url => {:controller => 'schools', :action => 'update'} do |f| %>
+        <%= render :partial => '/admin/school_form', :locals => {:f => f} %>
+    <% end %>
+  </div>
+</div>
