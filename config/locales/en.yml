@@ -1829,7 +1829,8 @@ en: # locale
   sms_logs: "SMS Logs"
   view_all_messages: "View all messages and their status"
   enable_news_comment_moderation: "Enable News Comment Moderation"
-  
+  welcome_admin: 'Welcome Admin!'
+  good_day: 'Hope You Are Doing Good'
 
 #  modified timetable and timetable entries
   select_tte:  "Select a Timetable"
@@ -2481,3 +2482,7 @@ en: # locale
   descriptive_indicator_created:  "Descriptive Indicator saved successfully."
   descriptive_indicator_updated:  "Descriptive Indicator updated."
   select_batches: "Select batches"
+  admin:
+    school_name: 'School Name'
+    description: 'Description'
+    sub_domain: 'SubDomain'
