@@ -1,20 +1,3 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
-#
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
-#
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
-#
-#  http://www.apache.org/licenses/LICENSE-2.0
-#
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
 
 class StudentController < ApplicationController
   filter_access_to :all
@@ -294,8 +277,8 @@ class StudentController < ApplicationController
   def edit
     @student = Student.find(params[:id])
     @student_user = @student.user
-    @student_categories = StudentCategory.active.find(:all , :conditions => ["school_id is = ?" , @school.id])
-    @batches = Batch.active.find(:all , :conditions=> ["school_id = ?" , @school.id])
+    @student_categories = StudentCategory.active.all
+    @batches = Batch.active.find(:all , :conditions=> ["batches.school_id = ?" , @school.id])
     @application_sms_enabled = SmsSetting.find_by_settings_key("ApplicationEnabled")
 
     if request.post?
@@ -454,7 +437,7 @@ class StudentController < ApplicationController
                                                   :conditions => ["admission_no = ? " , params[:query]],
                                                   :order => "batch_id asc,first_name asc",:include =>  [{:batch=>:course}]) unless params[:query] == ''
       end
-      @archived_students = @archived_students.map{|s| s if  s.user.school_id == @school.id}.compact
+      @archived_students = @archived_students.present? ? @archived_students.map{|s| s if  s.user.school_id == $school.id}.compact : []
       render :partial => "search_ajax"
     end
   end

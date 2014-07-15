@@ -34,7 +34,8 @@
           <label for="student_admission_no"><%= t('admission_number') %> <span class="necessary-field">*</span> </label>
           <div class="text-input-bg-admission">
             <% unless @config.config_value == '0' or @last_admitted_student.nil? %>
-              <%= s.text_field :admission_no , :value=> @last_admitted_student.admission_no.next%>
+              <%#`= s.text_field :admission_no #, :value=> @last_admitted_student.admission_no.next %>
+              <%= s.text_field :admission_no %>
             <% else %>
               <%= s.text_field :admission_no %>
             <% end %>
