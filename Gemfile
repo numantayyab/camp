@@ -22,3 +22,5 @@ gem 'activerecord-mysql2-adapter'
 gem 'activerecord'
 gem 'subdomain-fu', :git => "http://github.com/mbleigh/subdomain-fu.git"
 #gem 'subdomain-fu'#, :git => "git://github.com/nhowell/subdomain-fu.git"
+gem 'wicked_pdf', '~> 0.9.10'
+gem 'wkhtmltopdf-binary', '~> 0.9.9'
