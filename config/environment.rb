@@ -2,10 +2,10 @@ require File.join(File.dirname(__FILE__), 'boot')
 # require 'subdomain-fu'
 #
 #
-# SubdomainFu.tld_sizes = {:development => 1,
-#                          :test => 0,
-#                          :production => 1}
-# SubdomainFu.mirrors = ["www"]
+ #SubdomainFu.tld_sizes = {:development => 1,
+ #                         :test => 0,
+  #                        :production => 1}
+ #SubdomainFu.mirrors = ["www"]
 RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
 
 if Gem::VERSION >= "1.3.6"

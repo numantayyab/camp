@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   filter_access_to :all
   
   def index
-    @courses = Course.active
+    @courses = Course.active.select{|c| c if c.school_id == $school.id}
   end
 
   def new
@@ -21,7 +21,7 @@ class CoursesController < ApplicationController
   end
 
   def manage_course
-    @courses = Course.active
+    @courses = Course.active.select{|c| c.school_id == $school.id}
   end
 
   def manage_batches
@@ -186,6 +186,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
+    p 'asdasdasdasdasdasd' , @course.inspect
     if @course.batches.active.empty?
       @course.inactivate
       flash[:notice]="#{t('flash3')}"
@@ -204,6 +205,7 @@ class CoursesController < ApplicationController
   private
   def find_course
     course = Course.find params[:id]
+    p 'vvvvvvvvvvvvvvvvv', course.school_id , $school.id
     @course = course if course.school_id.eql?($school.id)
   end
 
